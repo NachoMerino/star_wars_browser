@@ -47,7 +47,18 @@ function createPagerNav(data, renderList) {
             loadData(data.next, renderList);
         });
     }
-    return navObj;
+        mainElement.appendChild(navObj);
+}
+
+function renderCards(data, renderItem) {
+    var cardsObj = document.createElement('div');
+    cardsObj.setAttribute('id', 'container');
+    data.results.forEach(function(object){
+      var sectionObj = document.createElement('section');
+      renderItem(sectionObj, object);
+      cardsObj.appendChild(sectionObj);
+    });
+    mainElement.appendChild(cardsObj);
 }
 //**********************************************************
 
@@ -86,18 +97,10 @@ function loadPlanet(url, done) {
 
 function renderPeople(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderPeople);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-    mainElement.appendChild(navObj);
-
-    data.results.forEach(function(person) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('person');
-
-        var genderSymbol;
-        switch (person.gender) {
+    createPagerNav(data, renderPeople);
+    renderCards(data,function(sectionObj, object) {
+              var genderSymbol;
+        switch (object.gender) {
             case 'male':
                 genderSymbol = '♂';
                 break;
@@ -113,44 +116,42 @@ function renderPeople(data) {
         sectionObj.innerHTML = `
         <header>
           <h1>
-            ${person.name}
-            <span class="gender" title="gender: ${person.gender}">${genderSymbol}</span>
+            ${object.name}
+            <span class="gender" title="gender: ${object.gender}">${genderSymbol}</span>
           </h1>
         </header>
                 <button>Details of Home World</button>
         <div>
           <li>
             <span class="label">Birth Year:</span>
-            <span class="value">${person.birth_year}.</span>
+            <span class="value">${object.birth_year}.</span>
           </li>
           <li>
             <span class="label">Eye Color:</span>
-            <span class="value">${person.eye_color}.</span>
+            <span class="value">${object.eye_color}.</span>
           </li>
           <li>
             <span class="label">Skin Color:</span>
-            <span class="value">${person.skin_color}.</span>
+            <span class="value">${object.skin_color}.</span>
           </li>
           <li>
             <span class="label">Hair Color:</span>
-            <span class="value">${person.hair_color}.</span>
+            <span class="value">${object.hair_color}.</span>
           </li>
           <li>
             <span class="label">Height:</span>
-            <span class="value">${person.height} m.</span>
+            <span class="value">${object.height} m.</span>
           </li>
           <li>
             <span class="label">Mass:</span>
-            <span class="value">${person.mass} kg.</span>
+            <span class="value">${object.mass} kg.</span>
           </li>
         </div>`;
         sectionObj.querySelector('button')
             .addEventListener('click', function() {
-                loadPlanet(person.homeworld, renderPlanet);
+                loadPlanet(object.homeworld, renderPlanet);
             });
-
-        cardsObj.appendChild(sectionObj);
-    });
+    } );
 };
 renderers.people = renderPeople;
 
@@ -216,10 +217,7 @@ function renderPlanet(planet) {
 function renderStarships(data) {
     mainObj.innerHTML = '';
     var navObj = createPagerNav(data, renderStarships);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-  data.results.forEach(function(starship) {
+    renderCards(data,function(sectionObj, object) {
         var sectionObj = document.createElement('section');
         sectionObj.classList.add('starship');
 
@@ -227,37 +225,36 @@ function renderStarships(data) {
         sectionObj.innerHTML = `
         <header>
           <h1>
-            ${starship.name}
+            ${object.name}
           </h1>
         </header>
         <div>
         <li>
             <span class="label">Manufacter:</span>
-            <span class="value">${starship.manufacturer}.</span>
+            <span class="value">${object.manufacturer}.</span>
           </li>
           <li>
             <span class="label">Crew:</span>
-            <span class="value">${starship.crew}.</span>
+            <span class="value">${object.crew}.</span>
           </li>
           <li>
             <span class="label">Passengers:</span>
-            <span class="value">${starship.passengers}</span>
+            <span class="value">${object.passengers}</span>
           </li>
           <li>
             <span class="label">Cost in Credits:</span>
-            <span class="value">${starship.cost_in_credits}.</span>
+            <span class="value">${object.cost_in_credits}.</span>
           </li>
           <li>
             <span class="label">Consumables:</span>
-            <span class="value">${starship.consumables}.</span>
+            <span class="value">${object.consumables}.</span>
           </li>
           <li>
             <span class="label">Starship Class:</span>
-            <span class="value">${starship.starship_class} m.</span>
+            <span class="value">${object.starship_class} m.</span>
           </li>
 
         </div>`;
-        cardsObj.appendChild(sectionObj);
     });
 };
 renderers.starships = renderStarships;
