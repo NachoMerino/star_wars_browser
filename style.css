@@ -35,9 +35,10 @@ body {
 }
 
 a,
-a:link,{
-color: rgba(75, 213, 238, .1);
-text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+a:link,
+{
+    color: rgba(75, 213, 238, .1);
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -48,7 +49,6 @@ button {
     text-shadow: 2px 2px rgba(75, 213, 238, 1);
     text-decoration: none;
     cursor: pointer;
-
 }
 
 h1,
@@ -64,23 +64,26 @@ footer {
     background-color: lightgray;
     text-shadow: 2px 2px rgba(75, 213, 238, 0.8);
 }
+
 header h1 {
-  display: inline-block;
+    display: inline-block;
 }
 
-header nav{
-  width: 50%;
-  display: inline-block;
-  position: absolute;
+header nav {
+    width: 50%;
+    display: inline-block;
+    position: absolute;
 }
-header nav ul li{
-  display: inline-block;
-  list-style-type: none;
-  margin-right: 1rem;
+
+header nav ul li {
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 1rem;
 }
+
 header nav ul li a,
-footer a{
-  color: black;
+footer a {
+    color: black;
 }
 
 
@@ -97,7 +100,7 @@ body>footer {
 }
 
 body>header {
-    border-bottom: 3px solid rgba(229,177,58,1); 
+    border-bottom: 3px solid rgba(229, 177, 58, 1);
 }
 
 main {
@@ -112,83 +115,83 @@ main {
 
 
 body>footer {
-    border-top: 3px solid rgba(229,177,58,1);
+    border-top: 3px solid rgba(229, 177, 58, 1);
 }
 
-#container > section {
+#container>section {
     width: calc(50vw - 3.6rem);
     margin: 1.5rem;
     background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(229,177,58,1);
+    border: 1px solid rgba(229, 177, 58, 1);
     border-radius: 0.5rem;
     overflow: hidden;
 }
 
-#container > section>header,
-#container > section>div {
+#container>section>header,
+#container>section>div {
     padding: 0.1rem 1rem;
 }
 
-#container > section>header {
-    border-bottom: 3px solid rgba(229,177,58,1);
+#container>section>header {
+    border-bottom: 3px solid rgba(229, 177, 58, 1);
 }
 
-#container > section ul {
+#container>section ul {
     padding: 3rem;
 }
 
-#container > section li {
+#container>section li {
     list-style-type: none;
     display: flex;
     padding: 0.2rem;
 }
 
-#container > section .label {
+#container>section .label {
     flex-grow: 1;
     width: 20vw;
 }
 
-#container > section .gender {
+#container>section .gender {
     color: gray;
 }
 
-#container > section .value {
+#container>section .value {
     color: rgba(75, 213, 238, 1);
 }
 
-#container > section button {
+#container>section button {
     font-family: starwarsfont2;
     line-height: 1.5;
     padding: 0.2rem 1rem;
     margin: 0.5rem .5rem 0rem 1rem;
     background: rgba(75, 213, 238, 0.8);
-    border: 1px solid rgba(229,177,58,1);
+    border: 1px solid rgba(229, 177, 58, 1);
     border-radius: 0.5rem;
     font-size: 1em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
     color: white;
 }
 
-@keyframes falcon-left-right {
+@keyframes left-right {
     from {
-        right: 0em;
+        right: 0vw;
     }
     to {
-        right: : 120em;
+        right: 100vw;
     }
 }
 
-@keyframes falcon-opacity {
+@keyframes opacity {
     0% {
         opacity: 0;
     }
     10% {
         opacity: 1;
     }
-    50% {
+    45% {
         opacity: 1;
     }
-    55% {
+    52% {
         opacity: 0;
     }
     100% {
@@ -199,15 +202,16 @@ body>footer {
 #falcon {
     position: absolute;
     z-index: 1;
-    top: 1rem;
+    top:0rem;
     right: 0rem;
     opacity: .9;
     width: 120px;
     height: 90px;
     background: url(mileniumfalcon.png) no-repeat;
-    background-size: 7rem;
-    animation: falcon-left-right 7s infinite ease-in-out, falcon-opacity 7s infinite linear;
+    background-size: 5rem;
+    animation: left-right 7s infinite ease-in-out, opacity 7s infinite linear;
 }
+
 
 
 
@@ -276,15 +280,15 @@ body>footer {
 .modal .content h1 {
     padding: 0rem 3rem;
     font-size: 30px;
-    border: 1px solid rgba(229,177,58,1);
+    border: 1px solid rgba(229, 177, 58, 1);
     border-top: none;
     border-right: none;
-    border-bottom: 3px solid rgba(229,177,58,1);
+    border-bottom: 3px solid rgba(229, 177, 58, 1);
 }
 
 .modal .content {
-    border: 1px solid rgba(229,177,58,1);
-    border-bottom: 3px solid rgba(229,177,58,1);
+    border: 1px solid rgba(229, 177, 58, 1);
+    border-bottom: 3px solid rgba(229, 177, 58, 1);
     padding: 0.5rem 3rem;
     z-index: 17;
     background-color: lightgray;
@@ -309,7 +313,7 @@ main nav .next {
     padding: 0.5rem 1rem;
     margin: 1.5rem 1.5rem 0rem 1.5rem;
     background: rgba(0, 255, 255, 0.5);
-    border: 1px solid rgba(229,177,58,1);
+    border: 1px solid rgba(229, 177, 58, 1);
     border-radius: 0.5rem;
     font-size: 1em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
