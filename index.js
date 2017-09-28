@@ -47,16 +47,16 @@ function createPagerNav(data, renderList) {
             loadData(data.next, renderList);
         });
     }
-        mainElement.appendChild(navObj);
+    mainElement.appendChild(navObj);
 }
 
 function renderCards(data, renderItem) {
     var cardsObj = document.createElement('div');
     cardsObj.setAttribute('id', 'container');
-    data.results.forEach(function(object){
-      var sectionObj = document.createElement('section');
-      renderItem(sectionObj, object);
-      cardsObj.appendChild(sectionObj);
+    data.results.forEach(function(object) {
+        var sectionObj = document.createElement('section');
+        renderItem(sectionObj, object);
+        cardsObj.appendChild(sectionObj);
     });
     mainElement.appendChild(cardsObj);
 }
@@ -98,8 +98,8 @@ function loadPlanet(url, done) {
 function renderPeople(data) {
     mainObj.innerHTML = '';
     createPagerNav(data, renderPeople);
-    renderCards(data,function(sectionObj, object) {
-              var genderSymbol;
+    renderCards(data, function(sectionObj, object) {
+        var genderSymbol;
         switch (object.gender) {
             case 'male':
                 genderSymbol = '♂';
@@ -151,7 +151,7 @@ function renderPeople(data) {
             .addEventListener('click', function() {
                 loadPlanet(object.homeworld, renderPlanet);
             });
-    } );
+    });
 };
 renderers.people = renderPeople;
 
@@ -216,12 +216,8 @@ function renderPlanet(planet) {
 //starships
 function renderStarships(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderStarships);
-    renderCards(data,function(sectionObj, object) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('starship');
-
-
+    createPagerNav(data, renderStarships);
+    renderCards(data, function(sectionObj, object) {
         sectionObj.innerHTML = `
         <header>
           <h1>
@@ -262,49 +258,40 @@ renderers.starships = renderStarships;
 /////planets
 function renderPlanets(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderPlanets);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-
-    data.results.forEach(function(planet) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('planet');
-
-
+    createPagerNav(data, renderPlanets);
+    renderCards(data, function(sectionObj, object) {
         sectionObj.innerHTML = `
         <header>
           <h1>
-            ${planet.name}
+            ${object.name}
           </h1>
         </header>
         <div>
           <li>
             <span class="label">Climate:</span>
-            <span class="value">${planet.climate}.</span>
+            <span class="value">${object.climate}.</span>
           </li>
           <li>
             <span class="label">Gravity:</span>
-            <span class="value">${planet.gravity}.</span>
+            <span class="value">${object.gravity}.</span>
           </li>
           <li>
             <span class="label">Terrain:</span>
-            <span class="value">${planet.terrain}.</span>
+            <span class="value">${object.terrain}.</span>
           </li>
           <li>
             <span class="label">Surface Water:</span>
-            <span class="value">${planet.surface_water}.</span>
+            <span class="value">${object.surface_water}.</span>
           </li>
           <li>
             <span class="label">Population:</span>
-            <span class="value">${planet.population} m.</span>
+            <span class="value">${object.population} m.</span>
           </li>
           <li>
             <span class="label">Diameter:</span>
-            <span class="value">${planet.diameter} kg.</span>
+            <span class="value">${object.diameter} kg.</span>
           </li>
         </div>`;
-        cardsObj.appendChild(sectionObj);
     });
 };
 renderers.planets = renderPlanets;
@@ -312,110 +299,90 @@ renderers.planets = renderPlanets;
 //////films
 function renderFilms(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderFilms);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-
-
-    data.results.forEach(function(film) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('film');
-
-
+    createPagerNav(data, renderPlanets);
+    renderCards(data, function(sectionObj, object) {
         sectionObj.innerHTML = `
         <header>
           <h1>
-            ${film.title}
+            ${object.title}
           </h1>
         </header>
         <div>
         <li>
             <span class="label">Episode Number:</span>
-            <span class="value">${film.episode_id}.</span>
+            <span class="value">${object.episode_id}.</span>
           </li>
           <li>
             <span class="label">Director:</span>
-            <span class="value">${film.director}.</span>
+            <span class="value">${object.director}.</span>
           </li>
           <li>
             <span class="label">Producer:</span>
-            <span class="value">${film.producer}</span>
+            <span class="value">${object.producer}</span>
           </li>
           <li>
             <span class="label">Release Date:</span>
-            <span class="value">${film.release_date}.</span>
+            <span class="value">${object.release_date}.</span>
           </li>
           <li>
-            <span class="label">Opening of the films:</span>
-            <span class="value">${film.opening_crawl} m.</span>
+            <span class="label">Opening of the Films:</span>
+            <span class="value">${object.opening_crawl} m.</span>
           </li>
 
         </div>`;
-        cardsObj.appendChild(sectionObj);
     });
 };
 renderers.films = renderFilms;
 //////species
 function renderSpecies(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderSpecies);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-
-
-    data.results.forEach(function(specie) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('specie');
-
-
-        sectionObj.innerHTML = `
+    createPagerNav(data, renderPlanets);
+    renderCards(data, function(sectionObj, object) {
+      sectionObj.innerHTML = `
         <header>
           <h1>
-            ${specie.name}
+            ${object.name}
           </h1>
         </header>
             <button>Details of Home World</button>
         <div>
         <li>
             <span class="label">Classification:</span>
-            <span class="value">${specie.classification}.</span>
+            <span class="value">${object.classification}.</span>
           </li>
           <li>
             <span class="label">Designation:</span>
-            <span class="value">${specie.designation}.</span>
+            <span class="value">${object.designation}.</span>
           </li>
           <li>
             <span class="label">Average Height:</span>
-            <span class="value">${specie.average_height}</span>
+            <span class="value">${object.average_height}</span>
           </li>
           <li>
             <span class="label">Skin Colors:</span>
-            <span class="value">${specie.skin_colors}.</span>
+            <span class="value">${object.skin_colors}.</span>
           </li>
           <li>
             <span class="label">Hair Colors:</span>
-            <span class="value">${specie.hair_colors}.</span>
+            <span class="value">${object.hair_colors}.</span>
           </li>
           <li>
             <span class="label">Eye Colors:</span>
-            <span class="value">${specie.eye_colors} m.</span>
+            <span class="value">${object.eye_colors} m.</span>
           </li>
           <li>
             <span class="label">Average Lifespan:</span>
-            <span class="value">${specie.average_lifespan} m.</span>
+            <span class="value">${object.average_lifespan} m.</span>
           </li>
           <li>
             <span class="label">Language:</span>
-            <span class="value">${specie.language} m.</span>
+            <span class="value">${object.language} m.</span>
           </li>
         </div>`;
         sectionObj.querySelector('button')
             .addEventListener('click', function() {
-                loadPlanet(specie.homeworld, renderPlanet);
+                loadPlanet(object.homeworld, renderPlanet);
             });
-        cardsObj.appendChild(sectionObj);
     });
 };
 renderers.species = renderSpecies;
@@ -423,17 +390,8 @@ renderers.species = renderSpecies;
 /////vehicles
 function renderVehicles(data) {
     mainObj.innerHTML = '';
-    var navObj = createPagerNav(data, renderVehicles);
-    var cardsObj = document.createElement('div');
-    cardsObj.setAttribute('id', 'container');
-    mainElement.appendChild(cardsObj);
-
-
-    data.results.forEach(function(vehicle) {
-        var sectionObj = document.createElement('section');
-        sectionObj.classList.add('vehicle');
-
-
+    createPagerNav(data, renderPlanets);
+    renderCards(data, function(sectionObj, vehicle) {
         sectionObj.innerHTML = `
         <header>
           <h1>
@@ -476,7 +434,6 @@ function renderVehicles(data) {
           </li>
 
         </div>`;
-        cardsObj.appendChild(sectionObj);
     });
 };
 renderers.vehicles = renderVehicles;
