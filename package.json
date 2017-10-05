@@ -1,0 +1,30 @@
+{
+  "name": "star_wars_api-sass",
+  "version": "1.0.1",
+  "description": "Star wars api browser work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NachoMerino/star_wars_browser.git"
+  },
+  "keywords": [
+    "starwars",
+    "api",
+    "browser",
+    "wiki"
+  ],
+  "author": "NachoMerino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NachoMerino/star_wars_browser/issues"
+  },
+  "homepage": "https://github.com/NachoMerino/star_wars_browser#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-watch": "^4.3.11"
+  }
+}
