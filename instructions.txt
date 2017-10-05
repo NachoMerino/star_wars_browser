@@ -1,0 +1,42 @@
+https://gitter.im/x-swapi/Lobby
+
+npm i -g gulp-cli
+npm init
+npm i -D gulp gulp-watch gulp-sass
+
+Create a `gulpfile.js` with following content:
+
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var watch = require('gulp-watch');
+
+gulp.task('default', function() {
+  return gulp.src('style.scss')
+    .pipe(watch('style.scss'))
+    .pipe(sass())
+    .pipe(gulp.dest('./'));
+});
+
+Change the extension of your stylesheet to .scss
+
+git checkout -b sass-rewrite
+git add package.json style* gulpfile.js
+git commit -m "Setup SASS"
+git push origin -u sass-rewrite
+
+run gulp (and live-server - in a new tab of the terminal - CTRL+SHIFT+T)
+
+when you have change, make a commit and push it
+
+git add .
+git commit -m "A message which describes the changes"
+git push origin sass-rewrite
+
+when you are finished, go to your master branch:
+
+git checkout master 
+
+merge the sass-rewrite branch and push to master:
+
+git merge sass-rewrite
+git push origin master

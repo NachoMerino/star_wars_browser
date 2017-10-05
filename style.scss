@@ -32,6 +32,16 @@ body {
     height: 100vh;
     background-image: url("background.gif");
     background-attachment: fixed;
+        >header,
+        >footer {
+            padding: 0.1rem 0.1rem 0.1rem 1rem;
+            }
+        >header {
+        border-bottom: 3px solid rgba(229, 177, 58, 1);
+            }
+        >footer {
+        border-top: 3px solid rgba(229, 177, 58, 1);
+            }
 }
 
 a,
@@ -65,101 +75,96 @@ footer {
     text-shadow: 2px 2px rgba(75, 213, 238, 0.8);
 }
 
-header h1 {
-    display: inline-block;
-}
-
-header nav {
+header {
+    h1 {
+      display: inline-block;  
+    }
+    nav {
     width: 50%;
     display: inline-block;
     position: absolute;
-}
-
-header nav ul li {
+        ul li {
     display: inline-block;
     list-style-type: none;
     margin-right: 1rem;
+        a{
+          color: black;  
+            }
+        }
+    }
 }
 
-header nav ul li a,
-footer a {
-    color: black;
-}
-
-
-body>header,
-body>footer {
-    padding-left: 1rem;
-    padding-right: 0.1rem;
-}
-
-body>header,
-body>footer {
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
-}
-
-body>header {
-    border-bottom: 3px solid rgba(229, 177, 58, 1);
-}
 
 main {
     flex-grow: 1;
     overflow: auto;
+    nav {
+        margin: 0 auto;
+        width: 100vw;
+        display: inline-block;
+        text-align: center;
+        .previous,
+        .next {
+            font-family: starwarsfont2;
+            line-height: 1.5;
+            width: 10%;
+            padding: 0.5rem 1rem;
+            margin: 1.5rem 1.5rem 0rem 1.5rem;
+            background: rgba(0, 255, 255, 0.5);
+            border: 1px solid rgba(229, 177, 58, 1);
+            border-radius: 0.5rem;
+            font-size: 1em;
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 1.2rem
+            }
+        }
+
 }
+
 
 #container {
     display: flex;
     flex-wrap: wrap;
+        >section {
+            width: calc(50vw - 3.6rem);
+            margin: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(229, 177, 58, 1);
+            border-radius: 0.5rem;
+            overflow: hidden;
+                >header,
+                >div {
+                    padding: 0.1rem 1rem;
+                    }
+                >header {
+                    border-bottom: 3px solid rgba(229, 177, 58, 1);
+                    }
+                ul {
+                    padding: 3rem;
+                    }
+            }
+
 }
 
-
-body>footer {
-    border-top: 3px solid rgba(229, 177, 58, 1);
-}
 
 #container>section {
-    width: calc(50vw - 3.6rem);
-    margin: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid rgba(229, 177, 58, 1);
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-
-#container>section>header,
-#container>section>div {
-    padding: 0.1rem 1rem;
-}
-
-#container>section>header {
-    border-bottom: 3px solid rgba(229, 177, 58, 1);
-}
-
-#container>section ul {
-    padding: 3rem;
-}
-
-#container>section li {
+    li {
     list-style-type: none;
     display: flex;
     padding: 0.2rem;
-}
-
-#container>section .label {
+    }
+    .label {
     flex-grow: 1;
     width: 20vw;
-}
-
-#container>section .gender {
+    }
+    .gender {
     color: gray;
-}
-
-#container>section .value {
+    }
+    .value {
     color: rgba(75, 213, 238, 1);
-}
-
-#container>section button {
+    }
+    button {
     font-family: starwarsfont2;
     line-height: 1.5;
     padding: 0.2rem 1rem;
@@ -170,34 +175,38 @@ body>footer {
     font-size: 1em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
     color: white;
+    }
 }
+
 
 @keyframes left-right {
-    from {
-        right: 0vw;
+        from {
+            right: 0vw;
+        }
+        to {
+            right: 100vw;
+        }
     }
-    to {
-        right: 100vw;
-    }
-}
 
 @keyframes opacity {
-    0% {
-        opacity: 0;
+        0% {
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        45% {
+            opacity: 1;
+        }
+        52% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 0;
+        }
     }
-    10% {
-        opacity: 1;
-    }
-    45% {
-        opacity: 1;
-    }
-    52% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+
+
 
 #falcon {
     position: absolute;
@@ -221,102 +230,81 @@ body>footer {
 
 /* -------------------------------- */
 
-.modal,
-.modal>.underlay,
-.modal>.body {
-    position: absolute;
+.modal{
+    &,
+    >.underlay,
+    >.body {
+        position: absolute;
+    }
+
+    &,
+    >.underlay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    & {
+        height: 0;
+        z-index: 10;
+        overflow: hidden;
+        transition: height 300ms ease;
+        }
+
+    &.open {
+        height: 100%;
+        }
+
+    &>.underlay {
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.7);
+        }
+
+    &>.body {
+        position: relative;
+        top: 20rem;
+        left: 25vw;
+        z-index: 15;
+        width: 50vw;
+        } 
+
+        .controls {
+            z-index: 20;
+            button {
+                font-family: starwarsfont2;
+                line-height: 1.5;
+                margin-bottom: -0.3rem;
+                background: none;
+                border: 1px solid black;
+                box-shadow: 5px 5px 5px #888888;
+                font-size: 1.25em;
+                background-color: rgba(0, 255, 255, 0.5);
+                color: white;
+                text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+                }
+            }
+
+            .content {
+                border: 1px solid rgba(229, 177, 58, 1);
+                border-bottom: 3px solid rgba(229, 177, 58, 1);
+                padding: 0.5rem 3rem;
+                z-index: 17;
+                background-color: lightgray;
+                color: black;
+                text-shadow: 2px 2px rgba(0, 255, 255, 0.5);
+                box-shadow: 5px 5px 5px #888888;
+                border-radius: 2rem;
+                    h1 {
+                        padding: 0rem 3rem;
+                        font-size: 30px;
+                        border: 1px solid rgba(229, 177, 58, 1);
+                        border-top: none;
+                        border-right: none;
+                        border-bottom: 3px solid rgba(229, 177, 58, 1);
+                        }
+                }  
 }
 
-.modal,
-.modal>.underlay {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.modal {
-    height: 0;
-    z-index: 10;
-    overflow: hidden;
-    transition: height 300ms ease;
-}
-
-.modal.open {
-    height: 100%;
-}
-
-.modal>.underlay {
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.7);
-}
 
 
-.modal>.body {
-    position: relative;
-    top: 20rem;
-    left: 25vw;
-    z-index: 15;
-    width: 50vw;
-}
-
-.modal .controls {
-    z-index: 20;
-}
-
-.modal .controls button {
-    font-family: starwarsfont2;
-    line-height: 1.5;
-    margin-bottom: -0.3rem;
-    background: none;
-    border: 1px solid black;
-    box-shadow: 5px 5px 5px #888888;
-    font-size: 1.25em;
-    background-color: rgba(0, 255, 255, 0.5);
-    color: white;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-}
-
-.modal .content h1 {
-    padding: 0rem 3rem;
-    font-size: 30px;
-    border: 1px solid rgba(229, 177, 58, 1);
-    border-top: none;
-    border-right: none;
-    border-bottom: 3px solid rgba(229, 177, 58, 1);
-}
-
-.modal .content {
-    border: 1px solid rgba(229, 177, 58, 1);
-    border-bottom: 3px solid rgba(229, 177, 58, 1);
-    padding: 0.5rem 3rem;
-    z-index: 17;
-    background-color: lightgray;
-    color: black;
-    text-shadow: 2px 2px rgba(0, 255, 255, 0.5);
-    box-shadow: 5px 5px 5px #888888;
-    border-radius: 2rem;
-}
-
-main nav {
-    margin: 0 auto;
-    width: 100vw;
-    display: inline-block;
-    text-align: center;
-}
-
-main nav .previous,
-main nav .next {
-    font-family: starwarsfont2;
-    line-height: 1.5;
-    width: 10%;
-    padding: 0.5rem 1rem;
-    margin: 1.5rem 1.5rem 0rem 1.5rem;
-    background: rgba(0, 255, 255, 0.5);
-    border: 1px solid rgba(229, 177, 58, 1);
-    border-radius: 0.5rem;
-    font-size: 1em;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 1.2rem
-}
